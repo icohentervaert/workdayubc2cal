@@ -1,6 +1,11 @@
 # WorkdayUBC2Cal
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Click_Here-blue?style=for-the-badge)](https://workdayubc2cal.pages.dev/)
+
 A fast, privacy-first web tool that helps UBC students export their Workday course schedules into a standard calendar format.
+
+## Live Demo & Usage
+You can use the live version of the tool here: **[WorkdayUBC2Cal Live Demo](https://workdayubc2cal.pages.dev/)**
 
 ## Why I Built This
 
@@ -14,7 +19,7 @@ After registering for courses on Workday, I wanted to see my classes in my daily
 
 ## Getting Started (local)
 
-To run this project locally, clone the repository and make sure you have [pnpm](https://pnpm.io/) installed. 
+To run this project locally, clone the repository and make sure you have [pnpm](https://pnpm.io/) installed.
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
