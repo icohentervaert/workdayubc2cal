@@ -1,0 +1,330 @@
+---
+import p1 from "../assets/p1.png";
+import p2 from "../assets/p2.png";
+import p3 from "../assets/p3.png";
+import coursesp1 from "../assets/coursesp1.png";
+import coursesp2 from "../assets/coursesp2.png";
+import coursesp3 from "../assets/coursesp3.png";
+import schedulep1 from "../assets/schedulep1.png";
+import schedulep2 from "../assets/schedulep2.png";
+import schedulep3 from "../assets/schedulep3.png";
+import schedulep4 from "../assets/schedulep4.png";
+import Footer from "./Footer.astro";
+---
+
+<div class="min-h-screen w-full flex flex-col bg-gray-50 dark:bg-neutral-950 font-sans">
+  <!-- Header -->
+  <header class="sticky top-0 z-40 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-md border-b border-gray-100 dark:border-neutral-800">
+    <div class="max-w-4xl mx-auto px-4 sm:px-8 h-14 sm:h-20 flex items-center justify-between gap-2">
+      
+      <!-- Left: Back Button -->
+      <div class="flex-1 flex justify-start">
+        <a href="/" class="group flex items-center gap-1.5 text-sm font-medium text-gray-500 dark:text-neutral-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-md py-1 pr-2">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4 transition-transform group-hover:-translate-x-0.5">
+            <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+          </svg>
+          <span class="hidden sm:inline">Back</span>
+        </a>
+      </div>
+
+      <!-- Center: Title -->
+      <h1 class="text-base sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white text-center truncate">
+        Workday Calendar Guide
+      </h1>
+
+      <!-- Right: Empty spacer for perfect centering -->
+      <div class="flex-1"></div>
+
+    </div>
+  </header>
+  <!-- Main Content -->
+  <main class="flex-1 max-w-4xl mx-auto w-full px-6 sm:px-8 pt-12 sm:pt-16">
+    
+    <!-- Table of Contents -->
+    <nav class="mb-12 sm:mb-16 p-6 sm:p-8 bg-white dark:bg-neutral-900 rounded-2xl border border-gray-100 dark:border-neutral-800 shadow-sm">
+      <h2 class="text-lg font-bold text-gray-900 dark:text-white mb-4">Table of Contents</h2>
+      <ul class="space-y-2.5 text-sm sm:text-base list-disc marker:text-black dark:marker:text-white">
+        <li>
+          <a href="#retrieving-schedule" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors">
+            Retrieving Your Schedule
+          </a>
+          <ul class="ml-4 mt-2 space-y-1.5 list-[circle]">
+            <li>
+              <a href="#registered-courses" class="text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                Registered Courses
+              </a>
+            </li>
+            <li>
+              <a href="#saved-schedules" class="text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                Saved Schedules
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#import-calendar" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors">
+            How to Import to Your Calendar
+          </a>
+          <ul class="ml-4 mt-2 space-y-1.5 list-[circle]">
+            <li>
+              <a href="#google-calendar" class="text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                Google Calendar
+              </a>
+            </li>
+            <li>
+              <a href="#outlook" class="text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                Outlook
+              </a>
+            </li>
+            <li>
+              <a href="#apple-calendar" class="text-gray-600 dark:text-neutral-400 hover:text-gray-900 dark:hover:text-white transition-colors">
+                Apple Calendar
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="#tips-troubleshooting" class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium transition-colors">
+            Tips & Troubleshooting
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Retrieving Your Schedule Section -->
+    <section id="retrieving-schedule" class="mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-8">
+        Retrieving Your Schedule
+      </h2>
+      <p class="text-base sm:text-lg text-gray-600 dark:text-neutral-300 mb-12 leading-relaxed">
+        There are two primary ways to export your schedule from Workday depending on whether your classes are finalized or still in the planning phase.
+      </p>
+
+      <!-- Registered Courses -->
+      <div class="mb-12">
+        <h3 id="registered-courses" class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          Registered Courses
+        </h3>
+        <ol class="space-y-6">
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">1</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium">Log in to your Workday account</p>
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">2</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Navigate to <span class="font-semibold">Student</span> in the sidebar</p>
+              <img src={p1.src} alt="Workday Student section" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">3</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Under Student, select <span class="font-semibold">Academics</span></p>
+              <img src={p2.src} alt="Workday Academics section" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">4</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Under Academics, select <span class="font-semibold">Registration & Courses</span></p>
+              <img src={p3.src} alt="Workday Registration & Courses section" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">5</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Under Registration, select <span class="font-semibold">View My Courses</span></p>
+              <img src={coursesp1.src} alt="Workday View My Courses" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">6</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Ensure you're viewing the correct academic session (e.g., 2026 Winter Term 1). Click the <span class="font-semibold">Export to Excel</span> icon in the top right of the 'My Enrolled Courses' table</p>
+              <img src={coursesp2.src} alt="Workday Export to Excel" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 font-semibold text-sm">7</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Press the download button and upload the resulting file into the tool</p>
+              <img src={coursesp3.src} alt="Workday download file" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Saved Schedules -->
+      <div>
+        <h3 id="saved-schedules" class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          Saved Schedules
+        </h3>
+        <ol class="space-y-6">
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">1</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium">Log in to your Workday account</p>
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">2</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Navigate to <span class="font-semibold">Student</span> in the sidebar</p>
+              <img src={p1.src} alt="Workday Student section" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">3</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Under Student, select <span class="font-semibold">Academics</span></p>
+              <img src={p2.src} alt="Workday Academics section" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">4</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Under Academics, select <span class="font-semibold">Registration & Courses</span></p>
+              <img src={p3.src} alt="Workday Registration & Courses section" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">5</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Under Registration, select <span class="font-semibold">View My Saved Schedules</span></p>
+              <img src={schedulep1.src} alt="Workday View My Saved Schedules" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">6</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Select your saved schedule for the correct academic session (e.g., 2026 Winter Term 2)</p>
+              <img src={schedulep2.src} alt="Workday Select saved schedule" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">7</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Click the <span class="font-semibold">Export to Excel</span> icon in the top right of the My Enrolled Courses table</p>
+              <img src={schedulep3.src} alt="Workday Export to Excel" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+          <li class="flex gap-4 sm:gap-6">
+            <span class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-emerald-100 dark:bg-emerald-900 text-emerald-700 dark:text-emerald-300 font-semibold text-sm">8</span>
+            <div class="flex-1">
+              <p class="text-gray-900 dark:text-white font-medium mb-4">Press the download button and upload it into the tool</p>
+              <img src={schedulep4.src} alt="Workday download file" class="w-full rounded-lg shadow-md border border-gray-200 dark:border-neutral-700" />
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Import to Calendar Section -->
+    <section id="import-calendar" class="mb-12 sm:mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-8">
+        Import to Your Calendar
+      </h2>
+      <p class="text-base sm:text-lg text-gray-600 dark:text-neutral-300 mb-8 leading-relaxed">
+        Once you've generated your <code class="bg-gray-100 dark:bg-neutral-800 px-2 py-1 rounded text-sm font-mono text-gray-900 dark:text-white">.ics</code> file, import it into your preferred calendar application:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <!-- Google Calendar -->
+        <a href="https://support.google.com/calendar/answer/37118?hl=en&co=GENIE.Platform%3DDesktop#import_to_gcal" target="_blank" rel="noopener noreferrer" class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-xl hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200">
+          <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Google Calendar</h4>
+          <p class="text-sm text-gray-600 dark:text-neutral-400">Learn how to import your .ics file →</p>
+        </a>
+
+        <!-- Outlook -->
+        <a href="https://support.microsoft.com/en-us/office/import-or-subscribe-to-a-calendar-in-outlook-com-or-outlook-on-the-web-cff1429c-5af6-41ec-a5b4-74f2c278e98c#ID0EDJBBDDD" target="_blank" rel="noopener noreferrer" class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-xl hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200">
+          <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Outlook</h4>
+          <p class="text-sm text-gray-600 dark:text-neutral-400">Learn how to import your .ics file →</p>
+        </a>
+
+        <!-- Apple Calendar -->
+        <a href="https://support.apple.com/en-ca/guide/calendar/icl1023/mac#aria-deve82542b62" target="_blank" rel="noopener noreferrer" class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-xl hover:shadow-md hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-200">
+          <h4 class="text-lg font-bold text-gray-900 dark:text-white mb-2">Apple Calendar</h4>
+          <p class="text-sm text-gray-600 dark:text-neutral-400">Learn how to import your .ics file →</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Tips & Troubleshooting Section -->
+    <section id="tips-troubleshooting" class="">
+      <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-gray-900 dark:text-white mb-8">
+        Tips & Troubleshooting
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Tip 1: Course not in calendar -->
+        <div class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-xl">⚠️</span>
+            <h4 class="font-bold text-gray-900 dark:text-white">Missing course?</h4>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+            If a course doesn't appear in your calendar, it may not have a defined meeting pattern (scheduled time). This is uncommon. The best solution is to add the course manually to your calendar application.
+          </p>
+        </div>
+
+        <!-- Tip 2: Timezone -->
+        <div class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-xl">🌍</span>
+            <h4 class="font-bold text-gray-900 dark:text-white">Wrong times?</h4>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+            Ensure both your Workday account and personal calendar are set to the same timezone. Mismatched timezones can cause classes to display at incorrect times.
+          </p>
+        </div>
+
+        <!-- Tip 3: Updates -->
+        <div class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-xl">🔄</span>
+            <h4 class="font-bold text-gray-900 dark:text-white">Keep it updated</h4>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+            The <code class="bg-gray-50 dark:bg-neutral-800 px-1.5 py-0.5 rounded text-xs font-mono border border-gray-200 dark:border-neutral-700 text-gray-800 dark:text-neutral-200">.ics</code> file is a static snapshot. If you add, drop, or modify a course, you must re-export your schedule and import the new file.
+          </p>
+        </div>
+
+        <!-- Tip 4: Organization -->
+        <div class="p-6 bg-white dark:bg-neutral-900 border border-gray-100 dark:border-neutral-800 rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-xl">📅</span>
+            <h4 class="font-bold text-gray-900 dark:text-white">Organize by term</h4>
+          </div>
+          <p class="text-sm text-gray-600 dark:text-neutral-400 leading-relaxed">
+            Create a dedicated calendar in your app for each academic term. This makes it easy to delete or hide all your classes at once if you need to re-import a fresh schedule.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Centered Footer wrapper -->
+  <div class="flex justify-center w-full pb-8">
+    <Footer />
+  </div>
+</div>
+
+<!-- Global styles to fix white background on overscroll -->
+<style is:global>
+  html,
+  body {
+    background-color: #f9fafb; /* matches bg-gray-50 */
+    margin: 0;
+    padding: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    html,
+    body {
+      background-color: #0a0a0a; /* matches dark:bg-neutral-950 */
+    }
+  }
+</style>

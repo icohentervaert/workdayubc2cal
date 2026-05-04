@@ -1,0 +1,100 @@
+---
+import upload from "../assets/upload.svg";
+import Footer from "./Footer.astro";
+---
+
+
+<div class="h-full min-h-screen w-full flex flex-col items-center justify-center p-4 sm:p-6 bg-gray-50 dark:bg-neutral-950 font-sans">
+  
+  <!-- Card Container -->
+  <div class="flex flex-col items-center gap-6 sm:gap-8 w-full max-w-lg p-6 sm:p-8 bg-white dark:bg-neutral-900 rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 dark:border-neutral-800 text-center">
+    
+    <!-- Header & Guide Link -->
+    <div class="space-y-2">
+      <label class="block text-xl sm:text-2xl font-bold tracking-tight text-gray-900 dark:text-white" for="file-upload">
+        Upload Workday Calendar
+      </label>
+      <p class="text-xs sm:text-sm text-gray-500 dark:text-neutral-400">
+        Select your `.xlsx` export file. Need help? 
+        <a href="guide" class="text-blue-600 dark:text-blue-400 font-medium hover:text-blue-700 dark:hover:text-blue-300 hover:underline transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded-sm">
+          Read the Guide &rarr;
+        </a>
+      </p>
+    </div>
+
+    <!-- Enhanced & Responsive File Input -->
+    <div class="w-full overflow-hidden">
+      <input
+        id="file-upload"
+        type="file"
+        autocomplete="off"
+        class="block w-full text-xs sm:text-sm text-gray-600 dark:text-neutral-400
+               file:mr-3 sm:file:mr-5 file:py-2.5 sm:file:py-3 file:px-4 sm:file:px-6 file:border-0 file:rounded-xl
+               file:text-xs sm:file:text-sm file:font-semibold file:transition-colors file:cursor-pointer
+               file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100
+               dark:file:bg-neutral-800 dark:file:text-neutral-200 dark:hover:file:bg-neutral-700
+               border-2 border-dashed border-gray-300 dark:border-neutral-700
+               rounded-2xl cursor-pointer bg-gray-50 dark:bg-neutral-950/50
+               hover:border-blue-400 dark:hover:border-blue-500 transition-all focus:outline-none"
+        accept=".xlsx"
+      />
+    </div>
+
+    <!-- Action Button -->
+    <button
+      id="convert"
+      class="w-full sm:w-auto min-w-[160px] py-3 sm:py-3.5 px-6 sm:px-8 rounded-xl bg-blue-600 text-white font-semibold text-sm sm:text-base shadow-sm
+             transition-all duration-200 ease-in-out
+             enabled:hover:bg-blue-700 enabled:hover:shadow-md enabled:active:scale-[0.97]
+             disabled:bg-gray-100 disabled:text-gray-400 disabled:border disabled:border-gray-200 disabled:cursor-not-allowed disabled:shadow-none
+             dark:disabled:bg-neutral-800 dark:disabled:text-neutral-500 dark:disabled:border-transparent"
+      disabled
+    >
+      Convert
+    </button>
+  </div>
+
+  <Footer />
+  
+</div>
+
+<script>
+  import convertFile from '../scripts/convert.ts';
+  // enable convert button on upload & pass xlsx file to convert.js
+  const fileUpload: HTMLInputElement = document.querySelector("#file-upload")!;
+  const convertBtn: HTMLButtonElement = document.querySelector("#convert")!;
+  const loading = document.querySelector("#loading-spinner");
+
+  convertBtn.disabled = true;
+
+  fileUpload.addEventListener("change", () => {
+    convertBtn.disabled = !fileUpload.files || fileUpload.files.length === 0;
+  });
+
+  convertBtn.addEventListener("click", async () => {
+    if (!fileUpload.files || fileUpload.files.length === 0) return;
+
+    await convertFile(
+        fileUpload.files[0].name,
+        URL.createObjectURL(fileUpload.files[0])
+      );
+  });
+
+ </script>
+
+
+<!-- Global styles to fix white background on overscroll -->
+<style is:global>
+  html,
+  body {
+    background-color: #f9fafb; /* matches bg-gray-50 */
+    margin: 0;
+    padding: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    html,
+    body {
+      background-color: #0a0a0a; /* matches dark:bg-neutral-950 */
+    }
+  }
+</style>
