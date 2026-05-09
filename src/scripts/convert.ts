@@ -222,45 +222,24 @@ function fixWrongStartDate(current_date: Date, recurring_days: string[]) {
 	return next;
 }
 
-function timeZoneOffset(timeZone: string, targetDate: Date = new Date()) {
-    // We use the targetDate (e.g., the start of the semester) 
-    const dt = new Date(targetDate.getTime());
-    
-    // Get the string representation of that date in the target timezone
-    const formatter = new Intl.DateTimeFormat("en-US", {
-        timeZone,
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: false,
-    });
+function timeZoneOffset(timeZone: string, targetDate: Date) {
+  const dt = new Date(Date.UTC(
+    targetDate.getUTCFullYear(),
+    targetDate.getUTCMonth(),
+    targetDate.getUTCDate(),
+    targetDate.getUTCHours(),
+    targetDate.getUTCMinutes(),
+    targetDate.getUTCSeconds()
+  ));
+  const local = new Date(dt.toLocaleString("en-US", { timeZone }));
+  // @ts-ignore
+  const mins = Math.round((local - dt) / 60000);
 
-    const parts = formatter.formatToParts(dt);
-    const map: Record<string, string> = {};
-    parts.forEach(p => map[p.type] = p.value);
-
-    // Create a "local" date object from those parts as if it were UTC
-    const localAsUtc = new Date(Date.UTC(
-        parseInt(map.year),
-        parseInt(map.month) - 1,
-        parseInt(map.day),
-        parseInt(map.hour) === 24 ? 0 : parseInt(map.hour), // Handle 24h edge cases
-        parseInt(map.minute),
-        parseInt(map.second)
-    ));
-
-    // Calculate difference in minutes
-    const mins = Math.round((localAsUtc.getTime() - dt.getTime()) / 60000);
-    
-    const sign = mins >= 0 ? "+" : "-";
-    const abs = Math.abs(mins);
-    const hh = String(Math.floor(abs / 60)).padStart(2, "0");
-    const mm = String(abs % 60).padStart(2, "0");
-
-    return `${sign}${hh}${mm}`;
+  const sign = mins >= 0 ? "+" : "-";
+  const abs = Math.abs(mins);
+  const hh = pad(Math.floor(abs / 60));
+  const mm = pad(abs % 60);
+  return `${sign}${hh}${mm}`;
 }
 
 function createEvent(
@@ -280,11 +259,9 @@ function createEvent(
 	const tzNum = parseInt(tzRaw, 10);
 	const hourVal = (Number.isFinite(tzNum) ? tzNum : 0) * -1 - 1;
 
+    // End of the final day in LOCAL time
 	const until = new Date(finalDay);
-	until.setDate(until.getDate() + 1);
-
-	// Use setUTCHours to bypass the browser's local timezone
-	until.setUTCHours(hourVal, 59, 59, 0);
+    until.setHours(23, 59, 59, 0);
 
 	return {
 		uid: generateUID(),
@@ -321,10 +298,11 @@ function serializeCalendar(events: {
 		lines.push(`LOCATION:${escapeICalText(e.location ?? "")}`);
 		lines.push(`DTSTART;TZID=${e.tzid}:${formatDateTimeLocal(e.dtStart)}`);
 		lines.push(`DTEND;TZID=${e.tzid}:${formatDateTimeLocal(e.dtEnd)}`);
+
 		lines.push(
 			`RRULE:FREQ=WEEKLY;WKST=SU;UNTIL=${formatDateTimeLocal(
 				e.until
-			)}Z;BYDAY=${e.byday.join(",")}`
+			)};BYDAY=${e.byday.join(",")}`
 		);
 		lines.push("END:VEVENT");
 	}
